@@ -57,7 +57,7 @@ target_compile_options(curlcpp PRIVATE
 if(CURLCPP_USE_PKGCONFIG)
     find_package(PkgConfig REQUIRED)
     pkg_check_modules(libcurl REQUIRED IMPORTED_TARGET libcurl>=${CURL_MIN_VERSION})
-    target_link_libraries(curlcpp PUBLIC PkgConfig::libcurl)
+    target_link_libraries(curlcpp PRIVATE PkgConfig::libcurl)
 else()
     # Add MacPorts
     if(${CMAKE_SYSTEM_NAME} MATCHES "Darwin")
@@ -67,10 +67,10 @@ else()
     find_package(CURL ${CURL_MIN_VERSION} REQUIRED)
 
     if(TARGET CURL::libcurl)
-        target_link_libraries(curlcpp PUBLIC CURL::libcurl)
+        target_link_libraries(curlcpp PRIVATE CURL::libcurl)
     else()
         target_include_directories(curlcpp PUBLIC ${CURL_INCLUDE_DIRS})
-        target_link_libraries(curlcpp PUBLIC ${CURL_LIBRARIES})
+        target_link_libraries(curlcpp PRIVATE ${CURL_LIBRARIES})
     endif()
 endif()
 
