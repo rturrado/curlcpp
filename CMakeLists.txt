@@ -1,5 +1,7 @@
 cmake_minimum_required(VERSION 3.11...3.15)
 
+cmake_policy(SET CMP0126 NEW)
+
 # Setting up project
 project(curlcpp LANGUAGES CXX)
 
